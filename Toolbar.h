@@ -26,18 +26,21 @@ signals:
     void fontSizeChanged(int size);
     void undoTriggered();
     void clearTriggered();
+    void drawModeToggled(bool enabled);
 
 private slots:
     void selectPen();
     void selectText();
     void selectEraser();
     void openColorDialog();
+    void toggleDrawMode();
 
 private:
     QPushButton *penButton;
     QPushButton *textButton;
     QPushButton *eraserButton;
     QPushButton *colorButton;
+    QPushButton *drawModeButton;
     QSlider *thicknessSlider;
     QSlider *opacitySlider;
     QSpinBox *fontSizeSpinBox;
@@ -46,6 +49,7 @@ private:
     QColorDialog *colorDialog;
 
     QColor currentColor;
+    bool drawModeEnabled;
 };
 
 #endif // TOOLBAR_H

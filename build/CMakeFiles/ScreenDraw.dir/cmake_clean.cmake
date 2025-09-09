@@ -12,6 +12,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/ScreenDraw.dir/main.cpp.o.d"
   "ScreenDraw"
   "ScreenDraw.pdb"
+  "ScreenDraw_autogen/mocs_compilation.cpp"
+  "ScreenDraw_autogen/timestamp"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -1,0 +1,2 @@
+set(__QT_DEPLOY_TARGET_ScreenDraw_FILE /Users/pier-lucrichard/prog/screen_drawer/build/ScreenDraw)
+set(__QT_DEPLOY_TARGET_ScreenDraw_TYPE EXECUTABLE)

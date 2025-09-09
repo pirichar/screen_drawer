@@ -6,12 +6,19 @@
 #include <QColorDialog>
 #include <QColor>
 
-Toolbar::Toolbar(QWidget *parent) : QWidget(parent), currentColor(Qt::red)
+Toolbar::Toolbar(QWidget *parent) : QWidget(parent), currentColor(Qt::red), drawModeEnabled(false)
 {
     setWindowFlags(Qt::WindowStaysOnTopHint | Qt::Tool);
     setWindowTitle("ScreenDraw Toolbar");
 
     QHBoxLayout *layout = new QHBoxLayout(this);
+
+    // Add Draw Mode toggle button first
+    drawModeButton = new QPushButton("🎨 Draw Mode: OFF", this);
+    drawModeButton->setCheckable(true);
+    drawModeButton->setStyleSheet("QPushButton:checked { background-color: #4CAF50; color: white; }");
+    connect(drawModeButton, &QPushButton::clicked, this, &Toolbar::toggleDrawMode);
+    layout->addWidget(drawModeButton);
 
     penButton = new QPushButton("Pen", this);
     penButton->setCheckable(true);
@@ -93,4 +100,11 @@ void Toolbar::openColorDialog()
         currentColor = newColor;
         emit colorChanged(currentColor);
     }
+}
+
+void Toolbar::toggleDrawMode()
+{
+    drawModeEnabled = !drawModeEnabled;
+    drawModeButton->setText(drawModeEnabled ? "🎨 Draw Mode: ON" : "🎨 Draw Mode: OFF");
+    emit drawModeToggled(drawModeEnabled);
 }

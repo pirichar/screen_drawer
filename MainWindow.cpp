@@ -4,14 +4,19 @@
 #include <QPainter>
 #include <QMouseEvent>
 #include <QLineEdit>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), drawing(false), textInput(nullptr), currentTool(Toolbar::Pen), currentColor(Qt::red), currentThickness(5), currentOpacity(255), currentFontSize(16)
+    : QMainWindow(parent), drawing(false), textInput(nullptr), currentTool(Toolbar::Pen), currentColor(Qt::red), currentThickness(5), currentOpacity(255), currentFontSize(16), drawModeActive(false)
 {
     // Make the window fullscreen, borderless, transparent, and stay on top
-    setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+    setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::WindowDoesNotAcceptFocus | Qt::WindowTransparentForInput);
     setAttribute(Qt::WA_TranslucentBackground);
+    setAttribute(Qt::WA_NoSystemBackground);
+    setAttribute(Qt::WA_ShowWithoutActivating);
     setGeometry(QGuiApplication::primaryScreen()->geometry());
+    
+    qDebug() << "MainWindow created with geometry:" << geometry();
 
     // Initialize the canvas
     canvas = QPixmap(size());
@@ -23,9 +28,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(toolbar, &Toolbar::colorChanged, this, &MainWindow::onColorChanged);
     connect(toolbar, &Toolbar::thicknessChanged, this, &MainWindow::onThicknessChanged);
     connect(toolbar, &Toolbar::opacityChanged, this, &MainWindow::onOpacityChanged);
-    connect(toolbar, &Toolbar::fontSizeChanged, this, &MainWindow::onFontSizeChanged); // Connect font size signal
+    connect(toolbar, &Toolbar::fontSizeChanged, this, &MainWindow::onFontSizeChanged);
     connect(toolbar, &Toolbar::undoTriggered, this, &MainWindow::onUndo);
     connect(toolbar, &Toolbar::clearTriggered, this, &MainWindow::onClear);
+    connect(toolbar, &Toolbar::drawModeToggled, this, &MainWindow::onDrawModeToggled);
     toolbar->show();
 
     history.push_back(canvas);
@@ -44,11 +50,14 @@ void MainWindow::paintEvent(QPaintEvent *event)
 
 void MainWindow::mousePressEvent(QMouseEvent *event)
 {
-    if (event->button() == Qt::LeftButton) {
+    qDebug() << "Mouse press event at:" << event->pos() << "Tool:" << currentTool << "Draw mode:" << drawModeActive;
+    
+    if (event->button() == Qt::LeftButton && drawModeActive) {
         if (currentTool == Toolbar::Pen || currentTool == Toolbar::Eraser) {
             lastPoint = event->pos();
             drawing = true;
             history.push_back(canvas);
+            qDebug() << "Started drawing at:" << lastPoint;
         } else if (currentTool == Toolbar::Text) {
             createTextInput(event->pos());
         }
@@ -57,14 +66,15 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 
 void MainWindow::mouseMoveEvent(QMouseEvent *event)
 {
-    if ((event->buttons() & Qt::LeftButton) && drawing) {
+    if ((event->buttons() & Qt::LeftButton) && drawing && drawModeActive) {
+        qDebug() << "Drawing line to:" << event->pos();
         drawLineTo(event->pos());
     }
 }
 
 void MainWindow::mouseReleaseEvent(QMouseEvent *event)
 {
-    if (event->button() == Qt::LeftButton && drawing) {
+    if (event->button() == Qt::LeftButton && drawing && drawModeActive) {
         drawing = false;
     }
 }
@@ -166,3 +176,25 @@ void MainWindow::onTextEdited()
     textInput = nullptr;
     update();
 }
+
+void MainWindow::onDrawModeToggled(bool enabled)
+{
+    drawModeActive = enabled;
+    qDebug() << "Draw mode toggled to:" << enabled;
+    
+    if (enabled) {
+        // When draw mode is enabled, make sure the window stays on top and can receive mouse events
+        setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+        setAttribute(Qt::WA_TranslucentBackground);
+        show();
+        raise();
+        activateWindow();
+    } else {
+        // When disabled, make it non-interactive but still visible
+        setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::WindowDoesNotAcceptFocus);
+        setAttribute(Qt::WA_TranslucentBackground);
+        setAttribute(Qt::WA_ShowWithoutActivating);
+        show();
+    }
+}
+

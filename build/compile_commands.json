@@ -1,0 +1,26 @@
+[
+{
+  "directory": "/Users/pier-lucrichard/prog/screen_drawer/build",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/Users/pier-lucrichard/prog/screen_drawer/build/ScreenDraw_autogen/include -isystem /opt/homebrew/lib/QtWidgets.framework/Headers -iframework /opt/homebrew/lib -isystem /opt/homebrew/lib/QtCore.framework/Headers -isystem /opt/homebrew/share/qt/mkspecs/macx-clang -isystem /opt/homebrew/include -isystem /opt/homebrew/lib/QtGui.framework/Headers -std=gnu++17 -arch arm64 -o CMakeFiles/ScreenDraw.dir/ScreenDraw_autogen/mocs_compilation.cpp.o -c /Users/pier-lucrichard/prog/screen_drawer/build/ScreenDraw_autogen/mocs_compilation.cpp",
+  "file": "/Users/pier-lucrichard/prog/screen_drawer/build/ScreenDraw_autogen/mocs_compilation.cpp",
+  "output": "CMakeFiles/ScreenDraw.dir/ScreenDraw_autogen/mocs_compilation.cpp.o"
+},
+{
+  "directory": "/Users/pier-lucrichard/prog/screen_drawer/build",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/Users/pier-lucrichard/prog/screen_drawer/build/ScreenDraw_autogen/include -isystem /opt/homebrew/lib/QtWidgets.framework/Headers -iframework /opt/homebrew/lib -isystem /opt/homebrew/lib/QtCore.framework/Headers -isystem /opt/homebrew/share/qt/mkspecs/macx-clang -isystem /opt/homebrew/include -isystem /opt/homebrew/lib/QtGui.framework/Headers -std=gnu++17 -arch arm64 -o CMakeFiles/ScreenDraw.dir/main.cpp.o -c /Users/pier-lucrichard/prog/screen_drawer/main.cpp",
+  "file": "/Users/pier-lucrichard/prog/screen_drawer/main.cpp",
+  "output": "CMakeFiles/ScreenDraw.dir/main.cpp.o"
+},
+{
+  "directory": "/Users/pier-lucrichard/prog/screen_drawer/build",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/Users/pier-lucrichard/prog/screen_drawer/build/ScreenDraw_autogen/include -isystem /opt/homebrew/lib/QtWidgets.framework/Headers -iframework /opt/homebrew/lib -isystem /opt/homebrew/lib/QtCore.framework/Headers -isystem /opt/homebrew/share/qt/mkspecs/macx-clang -isystem /opt/homebrew/include -isystem /opt/homebrew/lib/QtGui.framework/Headers -std=gnu++17 -arch arm64 -o CMakeFiles/ScreenDraw.dir/MainWindow.cpp.o -c /Users/pier-lucrichard/prog/screen_drawer/MainWindow.cpp",
+  "file": "/Users/pier-lucrichard/prog/screen_drawer/MainWindow.cpp",
+  "output": "CMakeFiles/ScreenDraw.dir/MainWindow.cpp.o"
+},
+{
+  "directory": "/Users/pier-lucrichard/prog/screen_drawer/build",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/Users/pier-lucrichard/prog/screen_drawer/build/ScreenDraw_autogen/include -isystem /opt/homebrew/lib/QtWidgets.framework/Headers -iframework /opt/homebrew/lib -isystem /opt/homebrew/lib/QtCore.framework/Headers -isystem /opt/homebrew/share/qt/mkspecs/macx-clang -isystem /opt/homebrew/include -isystem /opt/homebrew/lib/QtGui.framework/Headers -std=gnu++17 -arch arm64 -o CMakeFiles/ScreenDraw.dir/Toolbar.cpp.o -c /Users/pier-lucrichard/prog/screen_drawer/Toolbar.cpp",
+  "file": "/Users/pier-lucrichard/prog/screen_drawer/Toolbar.cpp",
+  "output": "CMakeFiles/ScreenDraw.dir/Toolbar.cpp.o"
+}
+]

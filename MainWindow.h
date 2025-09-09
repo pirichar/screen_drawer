@@ -32,6 +32,7 @@ private slots:
     void onUndo();
     void onClear();
     void onTextEdited();
+    void onDrawModeToggled(bool enabled);
 
 private:
     void drawLineTo(const QPoint &endPoint);
@@ -49,6 +50,7 @@ private:
     int currentThickness;
     int currentOpacity;
     int currentFontSize;
+    bool drawModeActive;
 };
 
 #endif // MAINWINDOW_H
