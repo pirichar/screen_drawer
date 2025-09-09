@@ -1,0 +1,2 @@
+# Hashes of file build rules.
+4c143f1300f259c4bfff450fcb80f832 CMakeFiles/ScreenDraw_autogen

@@ -1,0 +1,4 @@
+/home/pirichar/prog/screen_drawer/build/CMakeFiles/ScreenDraw.dir
+/home/pirichar/prog/screen_drawer/build/CMakeFiles/edit_cache.dir
+/home/pirichar/prog/screen_drawer/build/CMakeFiles/rebuild_cache.dir
+/home/pirichar/prog/screen_drawer/build/CMakeFiles/ScreenDraw_autogen.dir
